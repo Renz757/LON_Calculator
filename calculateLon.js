@@ -23,11 +23,13 @@ submitBtn.addEventListener("click", getDaysNotice)
 
 function getDaysNotice(event) {
     event.preventDefault()
-
     //create new date from input 
     const startDay = new Date(startDayInput.value)
     const aptDay = new Date(aptDayInput.value)
 
+    if (startDayInput.value === "NaN" || aptDayInput.value === "NaN") {
+        return console.log('Please Select a Date') 
+     }
     //calculate the difference in milliseconds 
     let differenceMs = aptDay.getTime() - startDay.getTime();
 
@@ -41,26 +43,32 @@ function getDaysNotice(event) {
         if (startDay.getDay() === aptDay.getDay()) {
             hoursNotice = hoursNotice - 48;
             daysNotice = daysNotice - 2;
-        //appoint date falls on monday 
+            //appoint date falls on monday 
         } else if ((aptDay.getDay() === 1)) {
             hoursNotice = hoursNotice - 48;
             daysNotice = daysNotice - 2;
-        //start day fall on friday
+            //start day fall on friday
         } else if (startDay.getDay() === 5) {
             hoursNotice = hoursNotice - 48;
             daysNotice = daysNotice - 2;
-        }
-        console.log(hoursNotice)
+        } else if (startDay.getDay() === 3 && aptDay.getDay() === 2) {
+            hoursNotice = hoursNotice - 48;
+            daysNotice = daysNotice - 2;
+        } else if (startDay.getDay() === 2 && aptDay.getDay() === 3) {
+            hoursNotice = hoursNotice - 48;
+            daysNotice = daysNotice - 2;
+        } 
     }
+
     //create new element 
     const lonDiv = document.createElement("p")
-
-    lonDiv.innerHTML = `${hoursNotice.toFixed(2)} hours days notice | ${daysNotice} business days`
+    lonDiv.innerHTML = `${hoursNotice.toFixed(2)} hours days notice | ${daysNotice.toFixed(2)} business days`
     lonContainer.appendChild(lonDiv)
+
+
+    startDayInput.value = " " 
+    aptDayInput.value = " "
 
     return console.log(daysNotice.toFixed(2), hoursNotice.toFixed(2))
 }
 
-
-
-console.log(includeWeekend.value)
