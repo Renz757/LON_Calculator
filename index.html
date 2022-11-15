@@ -14,18 +14,19 @@
             <div>
                 <form>
                     <div>
-                        <input type="date" id="startDate">
+                        <label class="mr-5" for="weekend">Don't Include Weekends</label><input type="checkbox" value="true" checked id="includeWeekend">
                     </div>
                     <div>
-                        <label for="endDate" class="mr-3">Appointment Date:</label>
-                        <input type="date" id="endDate">
+                        <input type="datetime-local" id="startDate">
                     </div>
                     <div>
-                        <label for="aptTime" class="mr-3">Appointment Time:</label>
-                        <input type="time" id="aptTime">
-                    </div>
+                        <input type="datetime-local" id="endDate">
+                    </div>  
                     <button type="submit" class="p-2 bg-slate-700 rounded mt-3" id="submitBtn">Submit</button>
                 </form>
+            </div>
+            <div id="lon-container">
+                
             </div>
         </div>
     </div>
